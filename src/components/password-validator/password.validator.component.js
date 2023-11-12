@@ -8,6 +8,13 @@ const requirementsMap = {
     noConsecutiveLetters: /(.)\1/,
 };
 
+const requirementsMapMessage = {
+    specialChar: 'Has one or more of these special characters: !@#$%^&*',
+    number: 'Has a number / digit',
+    uppercase: 'Has an uppercase letter',
+    noConsecutiveLetters: 'Has NO consecutive letters*** (stretch goal)',
+}
+
 const PasswordValidator = ({ options= [] }) => {
     const [password, setPassword] = useState('');
 
@@ -27,7 +34,7 @@ const PasswordValidator = ({ options= [] }) => {
             ></PasswordField>
             <RequirementList>
                 {options.map((option, index) => (
-                    <RequirementItem key={index} isValid={validatePassword(password, option)}>{option}</RequirementItem>
+                    <RequirementItem key={index} isValid={validatePassword(password, option)}>{requirementsMapMessage[option]}</RequirementItem>
                 ))}
             </RequirementList>
         </Container>
