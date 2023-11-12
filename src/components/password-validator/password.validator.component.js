@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { Container, PasswordField, RequirementItem, RequirementList, Title } from './password-validator.styled';
+import { Container, PasswordField, RequirementItem, RequirementList, Title } from './Password-Validator.styled';
+import IconWrapper from '../Icon-Wrapper/Icon-Wrapper.component';
 
 const requirementsMap = {
     specialChar: /[@#$%^&*!]/,
     number: /\d/,
     uppercase: /[A-Z]/,
-    noConsecutiveLetters: /(.)\1/,
+    noConsecutiveLetters: /^(?!.*(.)(?=\1)).+$/i,
 };
 
 const requirementsMapMessage = {
@@ -34,7 +35,10 @@ const PasswordValidator = ({ options= [] }) => {
             ></PasswordField>
             <RequirementList>
                 {options.map((option, index) => (
-                    <RequirementItem key={index} isValid={validatePassword(password, option)}>{requirementsMapMessage[option]}</RequirementItem>
+                    <RequirementItem key={index}>
+                        <IconWrapper isValid={validatePassword(password, option)} />
+                        {requirementsMapMessage[option]}
+                    </RequirementItem>
                 ))}
             </RequirementList>
         </Container>
