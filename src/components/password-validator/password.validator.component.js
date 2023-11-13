@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Container, PasswordField, RequirementItem, RequirementList, Title } from './Password-Validator.styled';
 import IconWrapper from '../Icon-Wrapper/Icon-Wrapper.component';
+import { PasswordPlaceholder, TitleMessage, requirementsMapMessage } from './Password-Validator.message';
 
 const requirementsMap = {
     specialChar: /[@#$%^&*!]/,
@@ -8,13 +9,6 @@ const requirementsMap = {
     uppercase: /[A-Z]/,
     noConsecutiveLetters: /^(?!.*(.)(?=\1)).+$/i,
 };
-
-const requirementsMapMessage = {
-    specialChar: 'Has one or more of these special characters: !@#$%^&*',
-    number: 'Has a number / digit',
-    uppercase: 'Has an uppercase letter',
-    noConsecutiveLetters: 'Has NO consecutive letters*** (stretch goal)',
-}
 
 const PasswordValidator = ({ options= [] }) => {
     const [password, setPassword] = useState('');
@@ -26,10 +20,10 @@ const PasswordValidator = ({ options= [] }) => {
 
     return (
         <Container>
-            <Title>Password Component</Title>
+            <Title variant='h2'>{TitleMessage}</Title>
             <PasswordField
                 type="password"
-                placeholder="Enter your password"
+                placeholder={PasswordPlaceholder}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             ></PasswordField>
