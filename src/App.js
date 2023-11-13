@@ -1,10 +1,12 @@
 import './App.css';
-import PasswordValidator from './components/password-validator/password.validator.component';
+import PasswordValidator from './components/Password-Validator/Password.Validator.component';
 
 
 const optionsSample = [
   'specialChar',
-  'uppercase'
+  'uppercase',
+  'number',
+  'noConsecutiveLetters'
 ]
 
 function App() {
